@@ -1,3 +1,4 @@
+import { SigninForm } from "@/components/auth/signin-form";
 import Link from "next/link";
 
 export default function SigninPage() {
@@ -18,6 +19,7 @@ export default function SigninPage() {
             </Link>
           </p>
         </div>
+        <SigninForm />
       </div>
     </div>
   );
