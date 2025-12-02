@@ -1,7 +1,13 @@
+"use client";
+
 import { SignupForm } from "@/components/auth/signup-form";
+import { SignupFormData } from "@/lib/auth/schema";
 import Link from "next/link";
 
 export default function SignupPage() {
+  const handleSubmit = async (data: SignupFormData) => {
+    console.log(data);
+  };
   return (
     <div className="min-h-screen flex items-center justify-center bg-background py-12 px-4 sm:px-6 lg:px-6">
       <div className="max-w-md w-full space-y-8">
@@ -19,7 +25,7 @@ export default function SignupPage() {
             </Link>
           </p>
         </div>
-        <SignupForm />
+        <SignupForm onSubmit={handleSubmit} />
       </div>
     </div>
   );
