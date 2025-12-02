@@ -1,135 +1,143 @@
-# Turborepo starter
+# Socium
 
-This Turborepo starter is maintained by the Turborepo core team.
+**Socium** is a modern Georgian social media platform built with cutting-edge web technologies. This monorepo contains all the code for the Socium platform, organized using [Turborepo](https://turbo.build) for optimal development experience and build performance.
 
-## Using this example
+## 🚀 Getting Started
 
-Run the following command:
+### Prerequisites
 
-```sh
-npx create-turbo@latest
+- **Node.js** >= 18
+- **pnpm** >= 10.24.0 (package manager)
+
+### Installation
+
+Install dependencies from the root of the monorepo:
+
+```bash
+pnpm install
 ```
 
-## What's inside?
+## 📦 What's inside?
 
-This Turborepo includes the following packages/apps:
+This Turborepo includes the following packages and apps:
 
-### Apps and Packages
+### Apps
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+- `web`: The main [Next.js](https://nextjs.org/) web application for Socium
+  - Authentication flows (sign in, sign up)
+  - Modern UI built with Radix UI and Tailwind CSS
+  - Type-safe forms with React Hook Form and Zod
+
+### Packages
+
+- `@repo/eslint-config`: Shared ESLint configurations for the monorepo
+- `@repo/typescript-config`: Shared TypeScript configurations
 
 Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
 
 ### Utilities
 
-This Turborepo has some additional tools already setup for you:
+This Turborepo has the following tools configured:
 
 - [TypeScript](https://www.typescriptlang.org/) for static type checking
 - [ESLint](https://eslint.org/) for code linting
 - [Prettier](https://prettier.io) for code formatting
+- [Turborepo](https://turbo.build) for monorepo orchestration
 
-### Build
+## 🛠️ Build
 
 To build all apps and packages, run the following command:
 
-```
-cd my-turborepo
+```bash
+# Using pnpm (recommended)
+pnpm build
 
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build
-yarn dlx turbo build
+# Or using turbo directly
 pnpm exec turbo build
 ```
 
 You can build a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
 
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build --filter=docs
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build --filter=docs
-yarn exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
+```bash
+# Build only the web app
+pnpm exec turbo build --filter=web
 ```
 
-### Develop
+## 🧪 Develop
 
 To develop all apps and packages, run the following command:
 
-```
-cd my-turborepo
+```bash
+# Using pnpm (recommended)
+pnpm dev
 
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev
-yarn exec turbo dev
+# Or using turbo directly
 pnpm exec turbo dev
 ```
 
-You can develop a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
+To develop a specific app:
 
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev --filter=web
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev --filter=web
-yarn exec turbo dev --filter=web
+```bash
+# Develop only the web app
 pnpm exec turbo dev --filter=web
 ```
 
-### Remote Caching
+The web application will be available at [http://localhost:3000](http://localhost:3000).
+
+## 📝 Available Scripts
+
+- `pnpm dev` - Start all development servers
+- `pnpm build` - Build all apps and packages
+- `pnpm lint` - Run ESLint across all packages
+- `pnpm check-types` - Type check all packages
+- `pnpm format` - Format code with Prettier
+
+## 🚀 Remote Caching
 
 > [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
+> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
 
-Turborepo can use a technique known as [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+Turborepo can use [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
 
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
+By default, Turborepo will cache locally. To enable Remote Caching, you'll need a Vercel account. If you don't have one, you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then run:
 
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo login
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo login
-yarn exec turbo login
+```bash
+# Authenticate with Vercel
 pnpm exec turbo login
-```
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo link
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo link
-yarn exec turbo link
+# Link your Turborepo to Remote Cache
 pnpm exec turbo link
 ```
 
-## Useful Links
+## 🏗️ Project Structure
 
-Learn more about the power of Turborepo:
+```
+socium/
+├── apps/
+│   └── web/              # Main Next.js web application
+├── packages/
+│   ├── eslint-config/    # Shared ESLint configurations
+│   └── typescript-config/# Shared TypeScript configurations
+├── turbo.json            # Turborepo configuration
+└── pnpm-workspace.yaml   # pnpm workspace configuration
+```
+
+## 📚 Learn More
+
+### Turborepo
 
 - [Tasks](https://turborepo.com/docs/crafting-your-repository/running-tasks)
 - [Caching](https://turborepo.com/docs/crafting-your-repository/caching)
 - [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching)
 - [Filtering](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters)
 - [Configuration Options](https://turborepo.com/docs/reference/configuration)
-- [CLI Usage](https://turborepo.com/docs/reference/command-line-reference)
+
+### Technologies
+
+- [Next.js Documentation](https://nextjs.org/docs)
+- [React Documentation](https://react.dev)
+- [TypeScript Documentation](https://www.typescriptlang.org/docs)
+
+---
+
+Built with ❤️ for the Georgian community
