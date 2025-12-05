@@ -1,13 +1,26 @@
 "use client";
 
 import { SignupForm } from "@/components/auth/signup-form";
+import { authClient } from "@/lib/auth/client";
 import { SignupFormData } from "@/lib/auth/schema";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function SignupPage() {
+  const router = useRouter();
   const handleSubmit = async (data: SignupFormData) => {
-    console.log(data);
+    await authClient.signUp.email({
+      name: data.name,
+      email: data.email,
+      password: data.password,
+    });
+    await authClient.signIn.email({
+      email: data.email,
+      password: data.password,
+    });
+    router.push("/");
   };
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-background py-12 px-4 sm:px-6 lg:px-6">
       <div className="max-w-md w-full space-y-8">

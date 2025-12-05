@@ -19,6 +19,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
+  FormRootError,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -64,6 +65,7 @@ const SignupForm = ({ onSubmit }: SignupFormProps) => {
               onSubmit={form.handleSubmit(handleSubmit)}
               className="space-y-4"
             >
+              <FormRootError />
               {/* Name */}
               <FormField
                 control={form.control}

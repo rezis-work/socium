@@ -4,7 +4,7 @@ import { useState } from "react";
 import { SigninFormData, signinSchema } from "@/lib/auth/schema";
 import { SIGNIN_FORM_DEFAULT_VALUES } from "@/lib/constants/default-values";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { useForm, UseFormSetError } from "react-hook-form";
 import {
   Card,
   CardContent,
@@ -19,12 +19,16 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
+  FormRootError,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
 interface SigninFormProps {
-  onSubmit: (data: SigninFormData) => void;
+  onSubmit: (
+    data: SigninFormData,
+    setError: UseFormSetError<SigninFormData>
+  ) => Promise<boolean>;
 }
 
 const SigninForm = ({ onSubmit }: SigninFormProps) => {
@@ -38,8 +42,11 @@ const SigninForm = ({ onSubmit }: SigninFormProps) => {
   const handleSubmit = async (data: SigninFormData) => {
     setIsSubmitting(true);
     try {
-      await onSubmit(data);
-      form.reset();
+      const success = await onSubmit(data, form.setError);
+      // Only reset on success
+      if (success) {
+        form.reset();
+      }
     } catch (error) {
       console.error("Signin failed:", error);
     } finally {
@@ -63,6 +70,7 @@ const SigninForm = ({ onSubmit }: SigninFormProps) => {
               onSubmit={form.handleSubmit(handleSubmit)}
               className="space-y-4"
             >
+              <FormRootError />
               {/* Email */}
               <FormField
                 control={form.control}
