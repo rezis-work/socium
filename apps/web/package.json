@@ -1,6 +1,6 @@
 {
   "name": "web",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "type": "module",
   "private": true,
   "scripts": {
@@ -17,6 +17,7 @@
     "better-auth": "^1.4.4",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "jotai": "^2.15.2",
     "lucide-react": "^0.555.0",
     "next": "^16.0.6",
     "react": "^19.2.0",
